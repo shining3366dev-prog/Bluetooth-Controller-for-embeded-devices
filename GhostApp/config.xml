@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.tactical.c4" version="1.0.0" xmlns="http://cordova.apache.org/ns/1.0" xmlns:cdv="http://cordova.apache.org/ns/1.0/cdv">
+    
+    <name>SysDiag</name>
+    <description>
+        System diagnostic utility for network and hardware services.
+    </description>
+    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+        Apache Cordova Team
+    </author>
+
+    <content src="index.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    
+    <icon src="res/icon.png" />
+
+    <preference name="SplashScreenDelay" value="0" />
+    <preference name="FadeSplashScreen" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+
+    <platform name="android">
+        <allow-intent href="market:*" />
+        
+        <preference name="AndroidWindowSplashScreenBackground" value="#050505" />
+    </platform>
+</widget>

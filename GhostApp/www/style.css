@@ -1,0 +1,102 @@
+/* Base Tactical Theme */
+body { 
+    background-color: #050505; 
+    color: #00ff00; 
+    font-family: 'Courier New', Courier, monospace; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+    overflow: hidden; 
+}
+
+/* CRT Scanline Overlay Effect */
+body::after { 
+    content: " "; 
+    display: block; 
+    position: absolute; 
+    top: 0; left: 0; bottom: 0; right: 0; 
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); 
+    z-index: 2; 
+    background-size: 100% 2px, 3px 100%; 
+    pointer-events: none; 
+}
+
+.dashboard { 
+    display: flex; 
+    gap: 20px; 
+    width: 95%; 
+    max-width: 1200px; 
+    height: 85vh; 
+    z-index: 3; 
+    position: relative; 
+}
+
+/* LEFT PANE: LINUX TERMINAL */
+.terminal-pane { 
+    flex: 1.5; 
+    background: #080808; 
+    padding: 20px; 
+    border: 1px solid #004400; 
+    box-shadow: inset 0 0 20px #001100; 
+    border-radius: 4px; 
+    display: flex; 
+    flex-direction: column; 
+}
+.terminal-window { flex-grow: 1; overflow-y: auto; margin-bottom: 10px; font-size: 0.95rem; display: flex; flex-direction: column; }
+.terminal-line { margin: 2px 0; text-shadow: 0 0 3px rgba(0,255,0,0.4); word-wrap: break-word;}
+.terminal-input-wrapper { display: flex; align-items: center; border-top: 1px dashed #008800; padding-top: 10px; display: none; /* Hidden until boot completes */ }
+.prompt { margin-right: 10px; font-weight: bold; white-space: nowrap; }
+#cmd-input { background: transparent; border: none; color: #00ff00; font-family: inherit; font-size: 0.95rem; width: 100%; outline: none; text-shadow: 0 0 3px rgba(0,255,0,0.4); }
+
+/* RIGHT PANE: HARDWARE CONTROLS */
+.control-pane { flex: 1; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; padding-right: 5px; }
+.hardware-box { background: rgba(10, 10, 10, 0.9); padding: 20px; border: 1px solid #004400; box-shadow: 0 0 20px rgba(0, 255, 0, 0.15); border-radius: 4px; }
+.output-screen { background: #001100; padding: 15px; font-size: 1.8rem; text-align: right; min-height: 25px; letter-spacing: 8px; border: 1px solid #00ff00; margin-bottom: 20px; text-shadow: 0 0 8px #00ff00; box-shadow: inset 0 0 10px #002200; }
+
+/* Keypad Grid */
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+button { background: #0a0a0a; color: #00ff00; border: 1px solid #006600; padding: 18px; font-size: 1.3rem; font-family: inherit; cursor: pointer; transition: all 0.15s; border-radius: 3px; }
+button:hover { background: #002200; box-shadow: 0 0 10px rgba(0,255,0,0.3); }
+button:active { background: #00ff00; color: #000; box-shadow: 0 0 20px #00ff00; }
+.btn-connect { grid-column: span 3; background: #002200; color: #55ff55; font-weight: bold; border: 2px solid #55ff55; letter-spacing: 2px; }
+
+/* Data Panel Specifics */
+.data-panel h3 { margin-top: 0; border-bottom: 1px solid #00ff00; padding-bottom: 5px; text-shadow: 0 0 5px #00ff00; font-size: 1rem; }
+.data-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.85rem;}
+.data-val { color: #fff; font-weight: bold; }
+.status-disconnected { color: #ff3333; text-shadow: 0 0 5px #ff3333; }
+.status-connected { color: #55ff55; text-shadow: 0 0 5px #55ff55; }
+.timer-warning { color: #ff3333; text-shadow: 0 0 10px #ff3333; font-size: 1.2rem;}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #004400; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #00ff00; }
+
+/* =======================================================
+   MOBILE OVERRIDE CSS
+   ======================================================= */
+@media (max-width: 900px) {
+    body { background-image: none; background-color: #121417; color: #e0e0e0; font-family: 'Arial', sans-serif; }
+    body::after { display: none; } /* Remove scanlines to prevent mobile lag */
+    
+    /* Stack panes vertically on mobile */
+    .dashboard { flex-direction: column; width: 100%; height: 100vh; gap: 0; overflow-y: auto;}
+    
+    .terminal-pane { flex: none; height: 35vh; border-radius: 0; border: none; border-bottom: 2px solid #333; box-shadow: none; padding: 10px;}
+    .control-pane { flex: none; padding: 10px; }
+    
+    .hardware-box { border: none; box-shadow: none; padding: 10px; margin-bottom: 10px; background: transparent;}
+    .output-screen { background: #111; color: #ff3333; border: 2px solid #333; text-shadow: none; box-shadow: none; border-radius: 5px; margin-bottom: 15px; text-align: center; font-size: 2.2rem; }
+    
+    .keypad { gap: 4px; background: #222; padding: 4px; border-radius: 5px;}
+    button { background: #2a2c31; color: #ffffff; border: none; border-radius: 3px; padding: 20px; font-size: 1.8rem; font-weight: bold; }
+    button:active { background: #4a4d56; box-shadow: none; }
+    
+    #btn-clear { color: #ff5555; }
+    #btn-submit { color: #55ff55; background: #224422; }
+    .btn-connect { border: none; font-size: 1.2rem; padding: 15px; margin-bottom: 5px; border-radius: 3px;}
+}

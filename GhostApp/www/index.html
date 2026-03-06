@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHOST-NODE SECURE SHELL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="terminal-pane">
+        <div class="terminal-window" id="term-window"></div>
+        <div class="terminal-input-wrapper" id="input-wrap">
+            <span class="prompt">root@ghost-node:~#</span>
+            <input type="text" id="cmd-input" autocomplete="off" autofocus>
+        </div>
+    </div>
+
+    <div class="control-pane">
+        <div class="hardware-box">
+            <div class="output-screen" id="display">_</div>
+            <div class="keypad">
+                <button onclick="connectBLE()" class="btn-connect" id="btn-connect">[ INITIATE UPLINK ]</button>
+                <button onclick="addNumber('1')">1</button>
+                <button onclick="addNumber('2')">2</button>
+                <button onclick="addNumber('3')">3</button>
+                <button onclick="addNumber('4')">4</button>
+                <button onclick="addNumber('5')">5</button>
+                <button onclick="addNumber('6')">6</button>
+                <button onclick="addNumber('7')">7</button>
+                <button onclick="addNumber('8')">8</button>
+                <button onclick="addNumber('9')">9</button>
+                <button onclick="clearDisplay()" id="btn-clear">CLR</button>
+                <button onclick="addNumber('0')">0</button>
+                <button onclick="transmitPayload(currentInput)" id="btn-submit">ENT</button>
+            </div>
+        </div>
+
+        <div class="hardware-box data-panel">
+            <h3>TARGET TELEMETRY</h3>
+            <div class="data-row"><span>UPLINK:</span> <span class="data-val status-disconnected" id="sys-status">OFFLINE</span></div>
+            <div class="data-row"><span>COUNTDOWN:</span> <span class="data-val" id="sys-timer">--:--</span></div>
+            <div class="data-row"><span>HW STATUS:</span> <span class="data-val" id="sys-log" style="color: #00ffff;">WAITING...</span></div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
